@@ -9,6 +9,7 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Person
+import androidx.compose.material.icons.filled.PlayArrow
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -18,24 +19,41 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
+import androidx.navigation.NavHostController
+import androidx.navigation.compose.rememberNavController
+
 
 import za.ac.cput.mpiiassignment2.ui.theme.MPIIAssignment2Theme
+import za.ac.cput.mpiiassignment2.ui.theme.Navigate
+import za.ac.cput.mpiiassignment2.ui.theme.SetupNavGraph
 
 class WelcomeScreen : ComponentActivity() {
+
+
+//Declaring the lateinit variable for the navigation controller
+private lateinit var  navController: NavHostController
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
+
             MPIIAssignment2Theme {
 
-
+                navController = rememberNavController()
+                SetupNavGraph(navController = navController)
                 //Calling all methods on runtime
-                MainContent()
-                AlertDialog()
+
+               
+
             }
         }
     }
+
+
 }
 
 @Composable
@@ -117,7 +135,56 @@ fun AlertDialog() {
                 in the alert dialog*/
                 backgroundColor = Color.Black,
                 contentColor = Color.White
-        )}}
+        )}
+
+
+
+    }
+
+@Composable
+//Using the navigation controller Parameter inside the button method
+fun StartJourneyButton(navController: NavController){
+    Column(
+        modifier = Modifier
+            .fillMaxSize()
+            .padding(vertical = 200.dp),
+        verticalArrangement = Arrangement.Bottom,
+        horizontalAlignment = Alignment.CenterHorizontally
+    )
+    {
+        Button(
+            //Coding to select the screen that the page needs to navigate to
+            onClick = {navController.navigate(route=Navigate.Journey.route)},
+            colors = ButtonDefaults.buttonColors(backgroundColor = Color.Black)
+        )
+        {
+            Icon(
+                imageVector = Icons.Filled.PlayArrow,
+                contentDescription = "",
+                tint = Color.White
+            )
+            // Creating a space between the icon and the text of the button
+            Spacer(Modifier.size(ButtonDefaults.IconSpacing))
+            // Text of the button
+            Text(text = "Start Journey", style = TextStyle(Color.White)
+            )
+        }
+    }
+}
+@Composable
+@Preview(showBackground = true)
+fun HomePreview() {
+    MainContent()
+    AlertDialog()
+    StartJourneyButton(navController = rememberNavController())
+}
+
+
+
+
+
+
+
 
 
 
