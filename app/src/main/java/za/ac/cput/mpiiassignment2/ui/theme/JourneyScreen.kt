@@ -163,7 +163,7 @@ fun CourseButton(){
             // Creating a space between the icon and the text of the button
             Spacer(Modifier.size(ButtonDefaults.IconSpacing))
             // Text of the button
-            Text(text = "Course Modules", style = TextStyle(Color.White))
+            Text(text = "Current Modules", style = TextStyle(Color.White))
         }
     }
 }
