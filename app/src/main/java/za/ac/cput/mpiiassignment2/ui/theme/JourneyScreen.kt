@@ -36,7 +36,7 @@ class JourneyScreen : ComponentActivity() {
                 CourseText()
                 DepartmentText()
                 StudentNumberText()
-                CourseButton()
+                CourseButton(navController = rememberNavController())
                 BackButton(navController = rememberNavController())
 
             }
@@ -138,7 +138,7 @@ fun StudentNumberText() {
     )
 }
 @Composable
-fun CourseButton(){
+fun CourseButton(navController: NavController){
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -151,7 +151,7 @@ fun CourseButton(){
     )
     {
         Button(
-            onClick = {},
+            onClick = {navController.navigate(route = Navigate.Modules.route)},
             colors = ButtonDefaults.buttonColors(backgroundColor = Color.Black)
         )
         {
@@ -206,6 +206,6 @@ fun JourneyScreenPreview() {
     CourseText()
     DepartmentText()
     StudentNumberText()
-    CourseButton()
+    CourseButton(navController = rememberNavController())
     BackButton(navController = rememberNavController())
 }

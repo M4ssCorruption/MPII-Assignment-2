@@ -35,9 +35,15 @@ fun SetupNavGraph(
             CourseText()
             DepartmentText()
             StudentNumberText()
-            CourseButton()
+            CourseButton(navController = navController)
             //This code is responsible for the navigation because it is calling the navigation variable
             BackButton(navController = navController)
+        }
+        composable(Navigate.Modules.route)
+        {
+
+            VerticalScroll(navController = navController)
+
         }
 
     }
