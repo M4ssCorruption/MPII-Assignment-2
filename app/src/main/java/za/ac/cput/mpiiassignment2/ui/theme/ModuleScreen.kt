@@ -481,7 +481,7 @@ fun VerticalScroll(navController: NavController){
                             text = { Text(text = "Are you sure you want to leave?", fontSize = 18.sp) },
                             confirmButton = {
                                 TextButton(onClick = { openDialog.value = false }) {
-                                    Text(text = "Cancel", style = TextStyle(Color.White))
+                                    Text(text = "No", style = TextStyle(Color.White))
 
                                 }
                         },
